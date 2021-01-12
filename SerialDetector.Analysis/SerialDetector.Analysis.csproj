@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{495F718A-D925-4639-B6B9-00D00A17B3F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SerialDetector.Analysis</RootNamespace>
+    <AssemblyName>SerialDetector.Analysis</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Collections.Immutable.1.7.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CallGraph.cs" />
+    <Compile Include="CallGraphBuilder.cs" />
+    <Compile Include="CallInfoNode.cs" />
+    <Compile Include="DataFlow\CtorCallEffect.cs" />
+    <Compile Include="DataFlow\DataFlowAnalysisStatistic.cs" />
+    <Compile Include="DataFlow\IInterpreter.cs" />
+    <Compile Include="DataFlow\PatternCache.cs" />
+    <Compile Include="DataFlow\Symbolic\SymbolicReference.Context.cs" />
+    <Compile Include="DataFlow\TaintedSourceInfo.cs" />
+    <Compile Include="DataFlow\TraceInterpreter.cs" />
+    <Compile Include="GraphVizAssemblyGraph.cs" />
+    <Compile Include="ICallGraphNode.cs" />
+    <Compile Include="CallInfo.cs" />
+    <Compile Include="DataFlow\Context\ArgumentContext.cs" />
+    <Compile Include="DataFlow\Context\ExecutionContext.cs" />
+    <Compile Include="DataFlow\Context\ReturnValueApplyingMode.cs" />
+    <Compile Include="DataFlow\Context\SlotsContext.cs" />
+    <Compile Include="DataFlow\Context\StackFrame.cs" />
+    <Compile Include="DataFlow\Context\StaticContext.cs" />
+    <Compile Include="DataFlow\Context\Summary.cs" />
+    <Compile Include="DataFlow\Context\VariableContext.cs" />
+    <Compile Include="DataFlow\DataFlowAnalysisResult.cs" />
+    <Compile Include="DataFlow\ExternalMethodList.cs" />
+    <Compile Include="DataFlow\IEffect.cs" />
+    <Compile Include="DataFlow\IMethodCall.cs" />
+    <Compile Include="DataFlow\Interpreter.cs" />
+    <Compile Include="DataFlow\MethodCall.cs" />
+    <Compile Include="DataFlow\MethodCallEffect.cs" />
+    <Compile Include="DataFlow\SummaryCache.cs" />
+    <Compile Include="DataFlow\SymbolicEngine.cs" />
+    <Compile Include="DataFlow\Symbolic\ConstSource.cs" />
+    <Compile Include="DataFlow\Symbolic\ISourceValue.cs" />
+    <Compile Include="DataFlow\Symbolic\ITaintedEntity.cs" />
+    <Compile Include="DataFlow\Symbolic\MethodReturnSource.cs" />
+    <Compile Include="DataFlow\Symbolic\NewArraySource.cs" />
+    <Compile Include="DataFlow\Symbolic\SearchContext.cs" />
+    <Compile Include="DataFlow\Symbolic\StaticFieldSource.cs" />
+    <Compile Include="DataFlow\Symbolic\ArgumentSource.cs" />
+    <Compile Include="DataFlow\Symbolic\SymbolicReference.cs" />
+    <Compile Include="DataFlow\Symbolic\SymbolicSlot.cs" />
+    <Compile Include="DataFlow\Symbolic\TaintedValue.cs" />
+    <Compile Include="DataFlow\Symbolic\UninitializedValueSource.cs" />
+    <Compile Include="DataFlow\Symbolic\UnknownFieldValueSource.cs" />
+    <Compile Include="GraphVizCallGraph.cs" />
+    <Compile Include="GraphVizSummary.cs" />
+    <Compile Include="IndexDB.cs" />
+    <Compile Include="MethodDefExtensions.cs" />
+    <Compile Include="MethodUniqueSignature.cs" />
+    <Compile Include="MethodUniqueSignatureExtensions.cs" />
+    <Compile Include="TemplateInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReentrancyGuard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dnlib\src\dnlib.csproj">
+      <Project>{f1b76fe5-8338-4bf6-9570-b285e852952b}</Project>
+      <Name>dnlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>

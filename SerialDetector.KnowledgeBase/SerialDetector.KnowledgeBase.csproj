@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{231E8889-D242-419C-9980-012625859738}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SerialDetector.KnowledgeBase</RootNamespace>
+    <AssemblyName>SerialDetector.KnowledgeBase</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="YamlDotNet, Version=4.3.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\YamlDotNet.4.3.1\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Formatters\Soap.cs" />
+    <Compile Include="Gadgets\DataSet.cs" />
+    <Compile Include="Templates\BinaryFormatterTemplates.cs" />
+    <Compile Include="Templates\SoapTemplates.cs" />
+    <Compile Include="Templates\XamlMarkupTemplates.cs" />
+    <Compile Include="Templates\XamlSystemTemplates.cs" />
+    <Compile Include="Templates\XmlSerializerTemplates.cs" />
+    <Compile Include="Templates\XslCompiledTransformTemplates.cs" />
+    <Compile Include="Templates\XslTransformTemplates.cs" />
+    <Compile Include="Templates\YamlDotNetTemplates.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Dsl\Payload.cs" />
+    <Compile Include="Dsl\IFormatter.cs" />
+    <Compile Include="Dsl\IGadget.cs" />
+    <Compile Include="Dsl\Internals\TemplateBuilder.cs" />
+    <Compile Include="Dsl\Internals\TemplateVisitor.cs" />
+    <Compile Include="Dsl\Internals\PayloadBuilder.cs" />
+    <Compile Include="Dsl\It.cs" />
+    <Compile Include="Dsl\Template.cs" />
+    <Compile Include="Dsl\TemplateBase.cs" />
+    <Compile Include="Dsl\PayloadCast.cs" />
+    <Compile Include="ExecutionMode.cs" />
+    <Compile Include="Formatters\Binary.cs" />
+    <Compile Include="Formatters\Xaml.cs" />
+    <Compile Include="Gadgets\ObjectDataProvider.cs" />
+    <Compile Include="Gadgets\TypeConfuseDelegate.cs" />
+    <Compile Include="PayloadGenerationMode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Payloads\MsxslScript.xsl" />
+    <Content Include="Payloads\ObjectDataProvider.xml" />
+    <Content Include="Payloads\ObjectDataProvider.yaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SerialDetector.Analysis\SerialDetector.Analysis.csproj">
+      <Project>{495f718a-d925-4639-b6b9-00d00a17b3f6}</Project>
+      <Name>SerialDetector.Analysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19183687-D234-4547-8AEE-4003BDEB6631}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SerialDetector.Tests</RootNamespace>
+    <AssemblyName>SerialDetector.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>8</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32bit>false</Prefer32bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32bit>false</Prefer32bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=4.3.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\YamlDotNet.4.3.1\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessScopeTests.cs" />
+    <Compile Include="CallGraphTests.cs" />
+    <Compile Include="CreateMethodUniqueSignatureTests.cs" />
+    <Compile Include="InputTaintingTests.cs" />
+    <Compile Include="InterpreterTests.cs" />
+    <Compile Include="KnowledgeBaseFake\BinaryFormatterTemplatesFake.cs" />
+    <Compile Include="KnowledgeBaseFake\TypeConfuseDelegateFake.cs" />
+    <Compile Include="KnowledgeBaseTemplateTests.cs" />
+    <Compile Include="Model\AccessScope\InternalClass.cs" />
+    <Compile Include="Model\AccessScope\PublicClass.cs" />
+    <Compile Include="Model\Deserializers\YamlDotNet.cs" />
+    <Compile Include="Model\Generic\Signatures.cs" />
+    <Compile Include="Model\Inheritance\AbstractClass.cs" />
+    <Compile Include="Model\Inheritance\AbstractClass2.cs" />
+    <Compile Include="Model\Inheritance\DerivedClass.cs" />
+    <Compile Include="Model\Inheritance\IInterface.cs" />
+    <Compile Include="Model\Inheritance\IInterface2.cs" />
+    <Compile Include="Model\Inheritance\SpecificClass.cs" />
+    <Compile Include="Model\MethodBody\GraphSamples.cs" />
+    <Compile Include="Model\MethodBody\ICreator.cs" />
+    <Compile Include="Model\MethodBody\Jumps.cs" />
+    <Compile Include="Model\MethodBody\TaintedSamples.cs" />
+    <Compile Include="Model\Overloading\BaseClass.cs" />
+    <Compile Include="Model\Overloading\DerivedClass.cs" />
+    <Compile Include="Model\Overloading\GenericClass.cs" />
+    <Compile Include="TemplateCreateTests.cs" />
+    <Compile Include="PayloadCastTests.cs" />
+    <Compile Include="PayloadGenerationCompletedTests.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="SelfModelBase.cs" />
+    <Compile Include="InheritanceModelTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="KnowledgeBasePayloadTests.cs" />
+    <Compile Include="SymbolicEngineBase.cs" />
+    <Compile Include="SymbolicEngineTests.cs" />
+    <Compile Include="SymbolicGraphTransforming.cs" />
+    <Compile Include="YamlDotNetTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dnlib\src\dnlib.csproj">
+      <Project>{f1b76fe5-8338-4bf6-9570-b285e852952b}</Project>
+      <Name>dnlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialDetector.Analysis\SerialDetector.Analysis.csproj">
+      <Project>{495f718a-d925-4639-b6b9-00d00a17b3f6}</Project>
+      <Name>SerialDetector.Analysis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialDetector.KnowledgeBase\SerialDetector.KnowledgeBase.csproj">
+      <Project>{231e8889-d242-419c-9980-012625859738}</Project>
+      <Name>SerialDetector.KnowledgeBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialDetector\SerialDetector.csproj">
+      <Project>{d35fef7d-6841-4414-b2a5-93365dca905f}</Project>
+      <Name>SerialDetector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    -->
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <FilesToCopy Include="..\SerialDetector.KnowledgeBase\Payloads\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(OutputPath)\Payloads" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+  </Target>
+</Project>

