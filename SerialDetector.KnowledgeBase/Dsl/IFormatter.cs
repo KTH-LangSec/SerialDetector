@@ -1,6 +1,6 @@
 namespace SerialDetector.KnowledgeBase
 {
-    internal interface IFormatter
+    public interface IFormatter
     {
         Payload GeneratePayload(object gadget);
     }

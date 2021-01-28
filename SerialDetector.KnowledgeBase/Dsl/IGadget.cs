@@ -1,6 +1,6 @@
 namespace SerialDetector.KnowledgeBase
 {
-    internal interface IGadget
+    public interface IGadget
     {
         object Build(string command);
     }

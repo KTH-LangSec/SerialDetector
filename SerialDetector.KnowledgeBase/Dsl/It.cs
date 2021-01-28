@@ -20,8 +20,7 @@ namespace SerialDetector.KnowledgeBase
     
         public Payload IsPayloadFrom(string fileName)
         {
-            var data = File.ReadAllText($@"Payloads\{fileName}");
-            var payload = new Payload(data.Replace("%CMD%", context.PayloadCommand));
+            var payload = Payload.FromFile(fileName, context.PayloadCommand);
 
             bool interrupt = false;    // we can use it for generation payload from the commandline w/o testing    
             context.RaisePayloadGenerationCompleted(

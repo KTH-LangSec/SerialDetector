@@ -4,6 +4,8 @@ using System.IO;
 using CommandLine;
 using SerialDetector.Analysis;
 using SerialDetector.CommandLine;
+using SerialDetector.KnowledgeBase;
+using static System.String;
 
 namespace SerialDetector
 {
@@ -66,7 +68,72 @@ namespace SerialDetector
 
         private static int GeneratePayload(PayloadOptions options)
         {
-            throw new NotImplementedException();
+            Payload payload;
+            if (!IsNullOrWhiteSpace(options.Name))
+            {
+                // generate a payload by name
+                if (!IsNullOrWhiteSpace(options.Gadget) || !IsNullOrWhiteSpace(options.Formatter))
+                {
+                    Console.Error.WriteLine("Either a payload name OR a gadget and a formatter MUST be specified.");
+                    return -1;
+                }
+                
+                payload = Payload.FromFile(options.Name, options.Command);
+            }
+            else
+            {
+                // generate a payload by a gadget-formatter pair
+                if (IsNullOrWhiteSpace(options.Gadget) || IsNullOrWhiteSpace(options.Formatter))
+                {
+                    Console.Error.WriteLine("Either a payload name OR a gadget and a formatter MUST be specified.");
+                    return -1;
+                }
+
+                var gadget = Create<IGadget>(options.Gadget);
+                if (gadget == null)
+                {
+                    Console.Error.WriteLine($"Not found the gadget {options.Gadget}");
+                    return -1;
+                }
+
+                var formatter = Create<IFormatter>(options.Formatter);
+                if (formatter == null)
+                {
+                    Console.Error.WriteLine($"Not found the formatter {options.Formatter}");
+                    return -1;
+                }
+                
+                payload = formatter.GeneratePayload(gadget.Build(options.Command));
+            }
+
+            using var data = payload.ToStream();
+            using var output = Console.OpenStandardOutput();
+            
+            var buffer = new byte[4 * 1024];
+            int count = 1;
+            while (count > 0)
+            {
+                count = data.Read(buffer, 0, buffer.Length);
+                output.Write(buffer, 0, count);
+            }
+            
+            output.Flush();
+            return 0;
+        }
+
+        private static T Create<T>(string name)
+            where T : class
+        {
+            var type = typeof(T).Assembly.GetType(
+                $"SerialDetector.KnowledgeBase.{(typeof(T).Name == "IGadget" ? "Gadgets" : "Formatters")}.{name}", 
+                throwOnError: false, 
+                ignoreCase: true);
+            if (type == null)
+            {
+                return null;
+            }
+
+            return Activator.CreateInstance(type, nonPublic: true) as T;
         }
     }
 }
